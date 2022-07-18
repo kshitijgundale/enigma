@@ -1,7 +1,9 @@
-import SideNav from "./sidenav"
-import NavBar from "./navbar"
+import SideNav from "../sidenav"
+import NavBar from "../navbar"
 
 const Dashboard = () => {
+
+    const marginLeft = window.matchMedia("(min-width: 768px)").matches ? "5%" : "25%"
 
     return (
         <div className="d-flex flex-column vh-100 w-100">
@@ -12,9 +14,6 @@ const Dashboard = () => {
             </div>
             <div className="d-flex flex-row w-100 flex-grow-1">
                 <SideNav></SideNav>
-                <div className="d-flex justify-content-center align-items-center w-100 overflow-auto">
-                    <div className="border border-dark" style={{height: "1900px"}}>Hello World</div>
-                </div>
             </div>
         </div>
         
