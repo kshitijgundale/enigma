@@ -1,7 +1,8 @@
 import { Form, Button } from "react-bootstrap"
 import { useState } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from '../reducers/userReducer'
+import { Navigate } from "react-router-dom";
 
 const Login = ({setCurrDialog}) => {
 
@@ -20,7 +21,7 @@ const Login = ({setCurrDialog}) => {
             <button className="text-white btn btn-link" onClick={()=>setCurrDialog("signup")}>
                 Sign Up
             </button>
-            <Form className="d-flex flex-column justify-content-center align-items-center text-white m-2" onSubmit={(event)=>handleLogin(event, email, password)}>
+            <Form className="d-flex flex-column justify-content-center align-items-center text-white m-2" onSubmit={(event)=>handleLogin(event)}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control 

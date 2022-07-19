@@ -26,5 +26,25 @@ export const signup = creds => {
     }
 }
 
+export const tokenLogin = async (dispatch) => {
+    try {
+        const userData = await userService.tokenLogin()
+        dispatch(setLoggedIn({userData, isLoggedIn: true}))
+    }
+    catch(error) {
+
+    }
+}
+
+export const logout = async (dispatch) => {
+    try {
+        const message = await userService.logout()
+        dispatch(setLoggedIn({user: {}, isLoggedIn: false}))
+    }
+    catch(error) {
+
+    }
+}
+
 export const { setLoggedIn } = userSlice.actions
 export default userSlice.reducer

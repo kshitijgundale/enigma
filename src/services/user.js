@@ -10,7 +10,19 @@ export const signup = async (creds) => {
     return response.data
 }
 
+export const tokenLogin = async (creds) => {
+    const response = await axios.get("http://127.0.0.1:5000/auth", { withCredentials: true })
+    return response.data
+}
+
+export const logout = async () => {
+    const response = await axios.get("http://127.0.0.1:5000/logout", { withCredentials: true })
+    return response.data
+}
+
 export default {
     login,
-    signup
+    signup,
+    tokenLogin,
+    logout
 }

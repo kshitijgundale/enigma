@@ -7,9 +7,6 @@ import { signup } from '../reducers/userReducer'
 const SignUp = ({setCurrDialog}) => {
 
     const dispatch = useDispatch()
-    const isLoggedIn = useSelector(state => state.user.isLoggedIn)
-
-    console.log(isLoggedIn)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -23,7 +20,6 @@ const SignUp = ({setCurrDialog}) => {
 
     return (
         <div className="d-flex flex-column justify-content-center align-items-center">
-            {isLoggedIn ? <Navigate to="/dashboard"></Navigate> : <></>}
             <button className="text-white btn btn-link" onClick={()=>setCurrDialog("login")}>
                 Login
             </button>
