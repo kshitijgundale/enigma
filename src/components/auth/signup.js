@@ -1,8 +1,7 @@
 import { Form, Button } from "react-bootstrap"
 import { useState } from 'react';
-import { Navigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux/es/exports";
-import { signup } from '../reducers/userReducer'
+import { useDispatch } from "react-redux/es/exports";
+import { signup } from '../../reducers/userReducer'
 
 const SignUp = ({setCurrDialog}) => {
 

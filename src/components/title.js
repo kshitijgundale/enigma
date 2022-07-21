@@ -1,6 +1,6 @@
 import titleImage from "../../src/images/3079600.webp"
-import Login from "./login"
-import SignUp from "./signup";
+import Login from "./auth/login"
+import SignUp from "./auth/signup";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";

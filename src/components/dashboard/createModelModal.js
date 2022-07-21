@@ -2,7 +2,7 @@ import { Modal } from "react-bootstrap";
 
 const CreateModelModal = ({show, setShow}) => {
     return (
-        <Modal show={show} onHide={()=>{setShow(false)}} centered>
+        <Modal show={show} onHide={()=>{setShow(false)}} centered size="lg">
             <Modal.Header closeButton>
                 <Modal.Title>
                     Modal heading
