@@ -3,11 +3,13 @@ import userService from '../services/user'
 
 const userSlice = createSlice({
     name: "user",
-    initialState: {isLoggedIn: false, user: {}},
+    initialState: {isLoggedIn: false, username: null, email: null, projects: []},
     reducers: {
         setLoggedIn(state, action) {
             state.isLoggedIn = action.payload.isLoggedIn
-            state.user = action.payload.userData
+            state.username = action.payload.userData.username
+            state.email = action.payload.userData.email
+            state.projects = action.payload.userData.projects
         }
     }
 })
@@ -38,7 +40,7 @@ export const tokenLogin = async (dispatch) => {
 
 export const logout = async (dispatch) => {
     try {
-        const message = await userService.logout()
+        await userService.logout()
         dispatch(setLoggedIn({user: {}, isLoggedIn: false}))
     }
     catch(error) {

@@ -4,7 +4,7 @@ import { logout } from "../../reducers/userReducer";
 
 const NavBar = () => {
 
-    const user = useSelector(state => state.user.user)
+    const user = useSelector(state => state.user)
 
     const dispatch = useDispatch()
 
@@ -14,7 +14,7 @@ const NavBar = () => {
 
     return (
             <>
-            {user ? 
+            {user.username ? 
                 <Navbar bg="light" expand="lg">
                     <Container>
                         <Navbar.Brand href="#home">Enigma</Navbar.Brand>
