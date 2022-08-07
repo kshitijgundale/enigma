@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const modelSlice = createSlice({
     name: "modelForm",
     initialState: {
-        modelName: ""
+        modelName: "",
+        selectWorkspace: ""
     },
     reducers: {
         editForm(state, action){

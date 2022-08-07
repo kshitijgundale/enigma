@@ -3,13 +3,14 @@ import userService from '../services/user'
 
 const userSlice = createSlice({
     name: "user",
-    initialState: {isLoggedIn: false, username: null, email: null, projects: []},
+    initialState: {isLoggedIn: true, username: "kshitij", email: "kshitijgundale08@gmail.com", workspaces: null, datasets: null},
     reducers: {
         setLoggedIn(state, action) {
             state.isLoggedIn = action.payload.isLoggedIn
             state.username = action.payload.userData.username
             state.email = action.payload.userData.email
             state.projects = action.payload.userData.projects
+            state.datasets = action.payload.userData.datasets
         }
     }
 })

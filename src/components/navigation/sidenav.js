@@ -1,32 +1,15 @@
-import { useState } from "react"
-
-const handleExpandNav = (setSideNavWidth, setExpandArrowDisplay, setMenuContentDisplay) => {
-    if(window.matchMedia("(min-width: 768px)").matches) {
-        setSideNavWidth("25%")
-    }
-    else{
-        setSideNavWidth("100%")
-    }
-
-    setExpandArrowDisplay("none")
-    setMenuContentDisplay("flex")
-}
-
-const handleCollapseNav = (setSideNavWidth, setExpandArrowDisplay, setMenuContentDisplay) => {
-    if(window.matchMedia("(min-width: 768px)").matches) {
-        setSideNavWidth("5%")
-    }
-    else{
-        setSideNavWidth("25%")
-    }
-
-    setExpandArrowDisplay("flex")
-    setMenuContentDisplay("none")
-}
+import { useState, useEffect } from "react"
+import { useMediaQuery } from "../../hooks/useMediaQuery"
 
 const SideNav = () => {
 
-    const initialWidth = window.matchMedia("(min-width: 768px)").matches ? "5%" : "25%"
+    const isPageLarge = useMediaQuery("(min-width: 768px)")
+
+    const initialWidth = isPageLarge ? "10%" : "25%"
+
+    useEffect(()=>{
+        setSideNavWidth(initialWidth)
+    }, [isPageLarge])
 
     const [sideNavWidth, setSideNavWidth] = useState(initialWidth)
     const [expandArrowDisplay, setExpandArrowDisplay] = useState("flex")
@@ -45,6 +28,30 @@ const SideNav = () => {
         paddingRight: "20px"
     }
 
+    const handleExpandNav = () => {
+        if(isPageLarge) {
+            setSideNavWidth("25%")
+        }
+        else{
+            setSideNavWidth("100%")
+        }
+    
+        setExpandArrowDisplay("none")
+        setMenuContentDisplay("flex")
+    }
+
+    const handleCollapseNav = () => {
+        if(isPageLarge) {
+            setSideNavWidth("10%")
+        }
+        else{
+            setSideNavWidth("25%")
+        }
+    
+        setExpandArrowDisplay("flex")
+        setMenuContentDisplay("none")
+    }
+
     return (
         <div style={style}>
             <div onClick={()=>handleExpandNav(setSideNavWidth, setExpandArrowDisplay, setMenuContentDisplay)} style={{display: expandArrowDisplay}}>
@@ -54,12 +61,8 @@ const SideNav = () => {
             </div>
             <div className={`d-${menuContentDisplay} flex-column justify-content-start align-items-start w-100`}>
                 <div className={`d-flex justify-content-end align-items-end w-100`} onClick={()=>handleCollapseNav(setSideNavWidth, setExpandArrowDisplay, setMenuContentDisplay)}>
-                    <a href="#">&times;</a>
+                    <button>&times;</button>
                 </div>
-                <a href="#">About</a>
-                <a href="#">Services</a>
-                <a href="#">Clients</a>
-                <a href="#">Contact</a>
             </div>
         </div>
     )

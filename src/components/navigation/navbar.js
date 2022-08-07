@@ -14,20 +14,22 @@ const NavBar = () => {
 
     return (
             <>
-            {user.username ? 
-                <Navbar bg="light" expand="lg">
+            {
+                user.username ? 
+                <Navbar bg="light" variant="light" expand="md" className="border">
                     <Container>
-                        <Navbar.Brand href="#home">Enigma</Navbar.Brand>
+                        <Navbar.Brand>Enigma</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
-                            <Nav.Link href="#home">Dashboard</Nav.Link>
-                            <NavDropdown title={user.username} id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>Logout</NavDropdown.Item>
-                            </NavDropdown>
-                        </Nav>
+                            <Nav className="me-auto">
+                                <Nav.Link>Dashboard</Nav.Link>
+                                <NavDropdown title="Create"></NavDropdown>
+                                <NavDropdown title={user.username} id="basic-nav-dropdown">
+                                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+                                </NavDropdown>
+                            </Nav>
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>

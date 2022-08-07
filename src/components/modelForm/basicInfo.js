@@ -1,20 +1,18 @@
 import { Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux/es/exports'
 import { editForm } from '../../reducers/modelFormReducer'
-import { useState } from 'react'
 
 const BasicInfo = () => {
 
     const modelName = useSelector(state => state.model.modelName)
-    const projects = useSelector(state => state.user.projects)
+    const workspaces = useSelector(state => state.user.workspaces)
 
     const dispatch = useDispatch()
 
-    const [createProject, setCreateProject] = useState(true)
 
     return (
         <Form>
-            <Form.Group>
+            <Form.Group className="mb-3">
                 <Form.Label>Model Name</Form.Label>
                 <Form.Control
                     type="text"
@@ -22,28 +20,24 @@ const BasicInfo = () => {
                     onChange={({target})=>{ dispatch(editForm({field: "modelName", value: target.value})) }}
                 />
             </Form.Group>
-            <Form.Group
-                onClick={ () => { setCreateProject(true) } }
-            >
-                <Form.Label>Project</Form.Label>
+            <Form.Group className="mb-3">
+                <Form.Label>Workspace</Form.Label>
                 <Form.Select
-                    disabled={!createProject}
+                    onChange={({target})=>{ dispatch(editForm({field: "selectProject", value: target.value})); console.log(target.value) }}
                 >
-                    <option>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    {workspaces ? workspaces.forEach(element => {
+                        <option key={element.id} value={element.id}>element.name</option>
+                    }) : <></>}
                 </Form.Select>
             </Form.Group>
-            <Form.Group
-                onClick={ ()=> { setCreateProject(false) } }
-            >
-                <Form.Label>Create New Project</Form.Label>
+            <Form.Group className="mb-3">
+                <Form.Label>Description</Form.Label>
                 <Form.Control
-                    disabled={createProject}
-                    type="text"
+                    as="textarea"
+                    value={modelName}
+                    onChange={({target})=>{ dispatch(editForm({field: "modelName", value: target.value})) }}
                 />
-            </Form.Group>       
+            </Form.Group>               
         </Form>
     )
 }

@@ -1,4 +1,4 @@
-import titleImage from "../../src/images/3079600.webp"
+import titleImage from "../../src/images/title.webp"
 import Login from "./auth/login"
 import SignUp from "./auth/signup";
 import { useEffect, useState } from "react";
@@ -11,10 +11,11 @@ const Title = () => {
     const dispatch = useDispatch()
 
     const isLoggedIn = useSelector(state => state.user.isLoggedIn)
+    const workspaces = useSelector(state => state.user.workspaces)
 
     useEffect(()=>{
         dispatch(tokenLogin)
-    }, [])
+    }, [dispatch])
 
     const [currDialog, setCurrDialog] = useState("login")
 
@@ -26,7 +27,7 @@ const Title = () => {
                 backgroundSize: "100% 100%"
             }}
         >
-            {isLoggedIn ? <Navigate to="/dashboard"></Navigate> : <></>}
+            {isLoggedIn ? (workspaces ? <Navigate to="/dashboard"></Navigate> : <Navigate to="/create-new-workspace"></Navigate>) : <></>}
             <p className="m-0" style={{
                 fontSize: "100px",
                 color: "lightgray",
