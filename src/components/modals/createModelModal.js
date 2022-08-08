@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleDisplay } from "../../reducers/modalReducer";
 import BasicInfo from "../modelForm/basicInfo";
 
-const CreateModelModal = ({show, setShow}) => {
+const CreateModelModal = () => {
 
     const [currStep, setCurrStep] = useState(0)
+    const dispatch = useDispatch()
+    const show = useSelector(state => state.modals.model)
 
     return (
-        <Modal show={show} onHide={()=>{setShow(false)}} centered>
+        <Modal show={show} onHide={()=>{ dispatch(toggleDisplay({field: "model", value: false})) }} centered>
             <Modal.Header closeButton>
             </Modal.Header>
             <Modal.Body className="d-flex flex-column justify-content-center align-items-center">

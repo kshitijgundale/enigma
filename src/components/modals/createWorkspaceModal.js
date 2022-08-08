@@ -1,14 +1,11 @@
 import { Modal, Form, Button } from "react-bootstrap"
-import { useMediaQuery } from "../../hooks/useMediaQuery"
 import { useDispatch, useSelector } from "react-redux"
 import { toggleDisplay } from "../../reducers/modalReducer"
 
 const CreateWorkspaceModal = () => {
 
-    const isPageLarge = useMediaQuery("(min-width: 768px)")
     const show = useSelector(state => state.modals.workspace)
     const dispatch = useDispatch()
-
 
     return (
         <Modal show={show} onHide={()=>{ dispatch(toggleDisplay({field: "workspace", value: false})) }} centered>

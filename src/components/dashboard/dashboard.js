@@ -72,8 +72,8 @@ const Dashboard = () => {
     const datasets = useSelector(state => state.user.datasets)
     const dispatch = useDispatch()
 
-    const openCreateWorkSpace = () => {
-        dispatch(toggleDisplay({field: "workspace", value: true}))
+    const openModal = (field) => {
+        dispatch(toggleDisplay({field: field, value: true}))
     }
 
     const isPageLarge = useMediaQuery("(min-width: 768px)")
@@ -96,11 +96,11 @@ const Dashboard = () => {
                         isPageLarge ? 
                         <div className="w-25 border border-bottom-0">
                             <h6 className="m-3 text-bold ">Links</h6>
-                            <LinkItem text={"Create New Workspace"} handleOnClick={openCreateWorkSpace}></LinkItem>
+                            <LinkItem text={"Create New Workspace"} handleOnClick={ ()=>openModal("workspace") }></LinkItem>
                             <LinkItem text={"Create New Dataset"}></LinkItem>
                             {
                                 datasets ?
-                                <LinkItem text={"Create New Model"}></LinkItem>
+                                <LinkItem text={"Create New Model"} handleOnClick={ ()=>openModal("model") }></LinkItem>
                                 :
                                 <></>
                             }

@@ -2,8 +2,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Title from "./components/title";
 import Dashboard from './components/dashboard/dashboard';
-import CreateNewWorkspace from './components/createNewWorkspace';
+import CreateFirstWorkspace from './components/createFirstWorkspace';
 import CreateWorkspaceModal from './components/modals/createWorkspaceModal';
+import CreateModelModal from './components/modals/createModelModal';
 
 import {
   BrowserRouter as Router,
@@ -15,12 +16,13 @@ function App() {
     <div>
       <div>
         <CreateWorkspaceModal></CreateWorkspaceModal>
+        <CreateModelModal></CreateModelModal>
       </div>
       <Router>
         <Routes>
           <Route path='/' element={<Title></Title>}></Route>
           <Route path='/dashboard' element={<Dashboard></Dashboard>}></Route>
-          <Route path='/create-new-workspace' element={<CreateNewWorkspace></CreateNewWorkspace>}></Route>
+          <Route path='/create-first-workspace' element={<CreateFirstWorkspace></CreateFirstWorkspace>}></Route>
         </Routes>
       </Router>
     </div>

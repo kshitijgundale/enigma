@@ -2,7 +2,7 @@ import { Form, Button } from "react-bootstrap";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import newWorkspaceImage from "../images/buildings.webp"
 
-const CreateNewWorkspace = () => {
+const CreateFirstWorkspace = () => {
 
     const isPageLarge = useMediaQuery("(min-width: 768px)")
 
@@ -33,4 +33,4 @@ const CreateNewWorkspace = () => {
     )
 }
 
-export default CreateNewWorkspace
+export default CreateFirstWorkspace

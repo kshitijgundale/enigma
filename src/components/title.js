@@ -27,7 +27,7 @@ const Title = () => {
                 backgroundSize: "100% 100%"
             }}
         >
-            {isLoggedIn ? (workspaces ? <Navigate to="/dashboard"></Navigate> : <Navigate to="/create-new-workspace"></Navigate>) : <></>}
+            {isLoggedIn ? (workspaces ? <Navigate to="/dashboard"></Navigate> : <Navigate to="/create-first-workspace"></Navigate>) : <></>}
             <p className="m-0" style={{
                 fontSize: "100px",
                 color: "lightgray",
