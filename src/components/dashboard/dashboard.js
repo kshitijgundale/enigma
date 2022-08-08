@@ -1,11 +1,12 @@
 import SideNav from "../navigation/sidenav"
 import NavBar from "../navigation/navbar"
-import { useSelector } from "react-redux"
-import { Navigate, useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { Navigate } from "react-router-dom"
 import { useMediaQuery } from "../../hooks/useMediaQuery"
 import { useState } from "react"
 import { Card } from "react-bootstrap"
 import excelImage from "../../images/tabularData.png"
+import { toggleDisplay } from "../../reducers/modalReducer"
 
 const Plus = () => { 
     return (
@@ -69,10 +70,10 @@ const Dashboard = () => {
 
     const isLoggedIn = useSelector(state => state.user.isLoggedIn)
     const datasets = useSelector(state => state.user.datasets)
-    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
-    const navigateToCreateProject = () => {
-        navigate('/create-new-workspace')
+    const openCreateWorkSpace = () => {
+        dispatch(toggleDisplay({field: "workspace", value: true}))
     }
 
     const isPageLarge = useMediaQuery("(min-width: 768px)")
@@ -95,7 +96,7 @@ const Dashboard = () => {
                         isPageLarge ? 
                         <div className="w-25 border border-bottom-0">
                             <h6 className="m-3 text-bold ">Links</h6>
-                            <LinkItem text={"Create New Workspace"} handleOnClick={navigateToCreateProject}></LinkItem>
+                            <LinkItem text={"Create New Workspace"} handleOnClick={openCreateWorkSpace}></LinkItem>
                             <LinkItem text={"Create New Dataset"}></LinkItem>
                             {
                                 datasets ?

@@ -1,5 +1,6 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { toggleDisplay } from "../../reducers/modalReducer";
 import { logout } from "../../reducers/userReducer";
 
 const NavBar = () => {
@@ -23,7 +24,10 @@ const NavBar = () => {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
                                 <Nav.Link>Dashboard</Nav.Link>
-                                <NavDropdown title="Create"></NavDropdown>
+                                <NavDropdown title="Create">
+                                    <NavDropdown.Item onClick={ ()=>{dispatch(toggleDisplay({field: "workspace", value: true}))} }>Create Workspace</NavDropdown.Item>
+                                    <NavDropdown.Item>Create Dataset</NavDropdown.Item>
+                                </NavDropdown>
                                 <NavDropdown title={user.username} id="basic-nav-dropdown">
                                     <NavDropdown.Item>Profile</NavDropdown.Item>
                                     <NavDropdown.Divider />
