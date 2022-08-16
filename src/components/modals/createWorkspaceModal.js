@@ -14,6 +14,8 @@ const CreateWorkspaceModal = () => {
 
     const handleSubmit = () => {
         dispatch(createWorkspace({name, description}))
+        setName("")
+        setDescription("")
     }
 
     return (

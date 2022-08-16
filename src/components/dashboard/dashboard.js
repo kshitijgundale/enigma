@@ -93,8 +93,6 @@ const Dashboard = () => {
                 <div className="d-flex flex-row w-100 h-100" style={{marginLeft: isPageLarge ? "10%": "25%"}}>
                     <div className="d-flex justify-content-center h-100" style={{width: isPageLarge ? "75%": "100%"}}>
                         <CardItem isPageLarge={isPageLarge} imgSrc={excelImage}></CardItem>
-                        <CardItem isPageLarge={isPageLarge} imgSrc={excelImage}></CardItem>
-                        <CardItem isPageLarge={isPageLarge} imgSrc={excelImage}></CardItem>
                     </div>
                     {
                         isPageLarge ? 

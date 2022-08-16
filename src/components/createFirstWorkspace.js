@@ -23,6 +23,8 @@ const CreateFirstWorkspace = () => {
 
     const handleSubmit = () => {
         dispatch(createWorkspace({name, description}))
+        setName("")
+        setDescription("")
     }
 
     return (
