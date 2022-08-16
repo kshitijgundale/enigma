@@ -1,11 +1,20 @@
+import { useState } from "react"
 import { Modal, Form, Button } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import { toggleDisplay } from "../../reducers/modalReducer"
+import { createWorkspace } from "../../reducers/userReducer"
 
 const CreateWorkspaceModal = () => {
 
+    const [name, setName] = useState("")
+    const [description, setDescription] = useState("")
+
     const show = useSelector(state => state.modals.workspace)
     const dispatch = useDispatch()
+
+    const handleSubmit = () => {
+        dispatch(createWorkspace({name, description}))
+    }
 
     return (
         <Modal show={show} onHide={()=>{ dispatch(toggleDisplay({field: "workspace", value: false})) }} centered>
@@ -16,18 +25,22 @@ const CreateWorkspaceModal = () => {
                         <Form.Label>Workspace Name</Form.Label>
                         <Form.Control
                             type="text"
+                            value={name}
+                            onChange={({target})=>{ setName(target.value) }}
                         />
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Description</Form.Label>
                         <Form.Control
                             as="textarea"
+                            onChange={({target})=>{ setDescription(target.value) }}
+                            value={description}
                         />
                     </Form.Group>             
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button size="md">Create</Button>
+                <Button size="md" onClick={handleSubmit}>Create</Button>
             </Modal.Footer>
         </Modal>
     )

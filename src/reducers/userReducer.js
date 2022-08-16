@@ -1,16 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit'
 import userService from '../services/user'
+import workspaceService from '../services/workspace'
 
 const userSlice = createSlice({
     name: "user",
-    initialState: {isLoggedIn: true, username: "kshitij", email: "kshitijgundale08@gmail.com", workspaces: null, datasets: null},
+    initialState: {isLoggedIn: false, username: null, email: null, workspaces: {}, datasets: {}},
     reducers: {
         setLoggedIn(state, action) {
             state.isLoggedIn = action.payload.isLoggedIn
             state.username = action.payload.userData.username
             state.email = action.payload.userData.email
-            state.projects = action.payload.userData.projects
+            state.workspaces = action.payload.userData.workspaces
             state.datasets = action.payload.userData.datasets
+        },
+        setWorkspaces(state, action) {
+            state.workspaces[action.payload.id] = {
+                name: action.payload.name,
+                models: {}
+            }
         }
     }
 })
@@ -35,19 +42,34 @@ export const tokenLogin = async (dispatch) => {
         dispatch(setLoggedIn({userData, isLoggedIn: true}))
     }
     catch(error) {
-
+        
     }
 }
 
 export const logout = async (dispatch) => {
     try {
         await userService.logout()
-        dispatch(setLoggedIn({user: {}, isLoggedIn: false}))
+        dispatch(setLoggedIn({userData: {isLoggedIn: false, username: null, email: null, workspaces: {}, datasets: {}}, isLoggedIn: false}))
     }
     catch(error) {
 
     }
 }
 
-export const { setLoggedIn } = userSlice.actions
+export const createWorkspace = data => {
+    return async dispatch => {
+        try {
+            const workspaceData = await workspaceService.createWorkspace(data)
+            console.log(workspaceData)
+            dispatch(setWorkspaces(workspaceData))
+        }
+        catch(error) {
+            if(error.response.status === 401){
+                dispatch(setLoggedIn({userData: {isLoggedIn: false, username: null, email: null, workspaces: {}, datasets: {}}, isLoggedIn: false}))
+            }
+        }
+    }
+}
+
+export const { setLoggedIn, setWorkspaces } = userSlice.actions
 export default userSlice.reducer

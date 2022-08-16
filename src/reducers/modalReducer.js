@@ -11,6 +11,16 @@ const modalSlice = createSlice({
         toggleDisplay(state, action){
             state[action.payload.field] = action.payload.value
         }
+    },
+    extraReducers: {
+        'user/setWorkspaces': (state, action) => {
+            state.workspace = false
+        },
+        'user/setLoggedIn': (state, action) => {
+            state.workspace = false
+            state.model = false
+            state.dataset = false
+        }
     }
 })
 

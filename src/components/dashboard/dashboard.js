@@ -69,7 +69,9 @@ const CardItem = ({isPageLarge, imgSrc}) => {
 const Dashboard = () => {
 
     const isLoggedIn = useSelector(state => state.user.isLoggedIn)
+    const workspaces = useSelector(state => state.user.workspaces)
     const datasets = useSelector(state => state.user.datasets)
+
     const dispatch = useDispatch()
 
     const openModal = (field) => {
@@ -80,7 +82,7 @@ const Dashboard = () => {
 
     return (
         <div className="d-flex flex-column vh-100 w-100">
-            {isLoggedIn ? <></> : <Navigate to="/"></Navigate>}
+            {isLoggedIn ? (Object.keys(workspaces).length > 0 ? <></> : <Navigate to="/create-first-workspace"></Navigate>) : <Navigate to="/"></Navigate>}
             <div style={{minHeight: "56px"}}>
                 <div className="position-fixed w-100" style={{zIndex: 2}}>
                     <NavBar></NavBar>
@@ -91,6 +93,8 @@ const Dashboard = () => {
                 <div className="d-flex flex-row w-100 h-100" style={{marginLeft: isPageLarge ? "10%": "25%"}}>
                     <div className="d-flex justify-content-center h-100" style={{width: isPageLarge ? "75%": "100%"}}>
                         <CardItem isPageLarge={isPageLarge} imgSrc={excelImage}></CardItem>
+                        <CardItem isPageLarge={isPageLarge} imgSrc={excelImage}></CardItem>
+                        <CardItem isPageLarge={isPageLarge} imgSrc={excelImage}></CardItem>
                     </div>
                     {
                         isPageLarge ? 
@@ -99,7 +103,7 @@ const Dashboard = () => {
                             <LinkItem text={"Create New Workspace"} handleOnClick={ ()=>openModal("workspace") }></LinkItem>
                             <LinkItem text={"Create New Dataset"}></LinkItem>
                             {
-                                datasets ?
+                                Object.keys(datasets).length > 0 ?
                                 <LinkItem text={"Create New Model"} handleOnClick={ ()=>openModal("model") }></LinkItem>
                                 :
                                 <></>

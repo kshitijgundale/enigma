@@ -9,7 +9,6 @@ const BasicInfo = () => {
 
     const dispatch = useDispatch()
 
-
     return (
         <Form>
             <Form.Group className="mb-3">
@@ -23,11 +22,11 @@ const BasicInfo = () => {
             <Form.Group className="mb-3">
                 <Form.Label>Workspace</Form.Label>
                 <Form.Select
-                    onChange={({target})=>{ dispatch(editForm({field: "selectProject", value: target.value})); console.log(target.value) }}
+                    onChange={({target})=>{ dispatch(editForm({field: "selectProject", value: target.value})) }}
                 >
-                    {workspaces ? workspaces.forEach(element => {
-                        <option key={element.id} value={element.id}>element.name</option>
-                    }) : <></>}
+                    {Object.keys(workspaces).map(element => (
+                        <option key={element} value={workspaces[element].name}>{workspaces[element].name}</option>
+                    ))}
                 </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3">
